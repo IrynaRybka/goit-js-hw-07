@@ -37,9 +37,6 @@ import { galleryItems } from './gallery-items.js';
 
 const containerGallery = document.querySelector(".gallery");
 const cardsMarkup = createGalleryMarkup(galleryItems);
-// const elemGallery = document.querySelectorAll(".gallery__item");
-// const linkRef = document.querySelectorAll(".gallery__link");
-// console.log(linkRef);
 
 containerGallery.insertAdjacentHTML("beforeend", cardsMarkup);
 containerGallery.addEventListener("click", onClickSelectImg);
@@ -69,8 +66,26 @@ function onClickSelectImg(event) {
     const instance = basicLightbox.create(`
       <img src="${largeImgSrc}">`)
     instance.show()
+  
+    window.addEventListener('keydown', (e) => {
+      console.log(e)
+      if (e.key === "Escape" && e.code === "Escape") {
+        instance.close()
+        window.removeEventListener('keydown', e);
+    }
+  });
+  // window.removeEventListener('keydown', e);
+} 
  
-}
+
+// function onEscKeyPress(event) {
+//   // console.log(event.key)
+//   if (event.key === "Escape") {
+//   //  
+  
+//   window.removeEventListener('keydown', event);
+//   }
+// }
   
 
 
